@@ -1,4 +1,4 @@
-# Bali Threat Modeler: Definitive Edition
+# Threat Modeler: Definitive Edition
 
 A comprehensive threat modeling tool that combines PASTA (Process for Attack Simulation and Threat Analysis) and STRIDE methodologies with AI-powered analysis using local Ollama models and Google Gemini Pro enrichment.
 
