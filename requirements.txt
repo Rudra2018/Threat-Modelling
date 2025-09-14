@@ -1,0 +1,24 @@
+# Core dependencies for Bali Threat Modeler
+fpdf2>=2.7.0
+vertexai>=1.0.0
+google-cloud-aiplatform>=1.0.0
+graphviz>=0.20.0
+rich>=13.0.0
+tqdm>=4.65.0
+PyYAML>=6.0.0
+requests>=2.28.0
+
+# Additional Python standard library modules used (no pip installation needed):
+# - json
+# - asyncio
+# - textwrap
+# - subprocess
+# - sys
+# - os
+# - dataclasses
+# - enum
+# - datetime
+# - typing
+# - pathlib
+# - re
+# - time
