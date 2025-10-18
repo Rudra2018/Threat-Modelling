@@ -1,0 +1,129 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Threat Analysis Report - halodoc-ios-master</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .header { background: #2c3e50; color: white; padding: 20px; margin-bottom: 20px; }
+        .summary { background: #ecf0f1; padding: 15px; margin-bottom: 20px; }
+        .finding { border-left: 4px solid #3498db; padding: 15px; margin: 10px 0; background: #f8f9fa; }
+        .critical { border-left-color: #e74c3c; }
+        .high { border-left-color: #f39c12; }
+        .medium { border-left-color: #f1c40f; }
+        .low { border-left-color: #27ae60; }
+        .code { background: #2c3e50; color: #ecf0f1; padding: 10px; font-family: monospace; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>STRIDE Threat Analysis Report</h1>
+        <h2>Project: halodoc-ios-master</h2>
+        <p>Generated: 2025-10-18 21:45:23</p>
+    </div>
+
+    <div class="summary">
+        <h2>Executive Summary</h2>
+        <p><strong>Total Findings:</strong> 4</p>
+        <p><strong>Critical:</strong> 2 | <strong>High:</strong> 0 |
+           <strong>Medium:</strong> 2 | <strong>Low:</strong> 0</p>
+        <p><strong>Analysis Methodology:</strong> STRIDE (Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege)</p>
+    </div>
+
+    <h2>STRIDE Category Distribution</h2>
+    <table>
+        <tr><th>STRIDE Category</th><th>Count</th><th>Description</th></tr>
+        <tr><td>Information_Disclosure</td><td>2</td><td>Unauthorized data access and privacy violations</td></tr>
+<tr><td>Tampering</td><td>2</td><td>Data and code modification attacks</td></tr>
+    </table>
+
+    <h2>Detailed Findings</h2>
+    
+            <div class="finding critical">
+                <h3>1. Code injection via eval</h3>
+                <p><strong>Severity:</strong> Critical |
+                   <strong>STRIDE Category:</strong> Tampering |
+                   <strong>CWE:</strong> CWE-95</p>
+                <p><strong>File:</strong> halodoc-ios-master/crash_monkey_result/result_000/result_view.js:42</p>
+                <p><strong>Confidence:</strong> 0.90</p>
+                <p><strong>Description:</strong> Code injection via eval detected in JavaScript code</p>
+                <p><strong>Attack Vector:</strong> Data modification, code injection, integrity violations</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>                  index: i
+                });
+>>>             return eval(log.message);
+              });
+              return img.src = log.screen_image + '.png';</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Avoid dynamic code execution, use safe alternatives</p>
+            </div>
+            
+
+            <div class="finding critical">
+                <h3>2. Code injection via eval</h3>
+                <p><strong>Severity:</strong> Critical |
+                   <strong>STRIDE Category:</strong> Tampering |
+                   <strong>CWE:</strong> CWE-95</p>
+                <p><strong>File:</strong> halodoc-ios-master/crash_monkey_result/result_001/result_view.js:42</p>
+                <p><strong>Confidence:</strong> 0.90</p>
+                <p><strong>Description:</strong> Code injection via eval detected in JavaScript code</p>
+                <p><strong>Attack Vector:</strong> Data modification, code injection, integrity violations</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>                  index: i
+                });
+>>>             return eval(log.message);
+              });
+              return img.src = log.screen_image + '.png';</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Avoid dynamic code execution, use safe alternatives</p>
+            </div>
+            
+
+            <div class="finding medium">
+                <h3>3. Information disclosure in errors</h3>
+                <p><strong>Severity:</strong> Medium |
+                   <strong>STRIDE Category:</strong> Information_Disclosure |
+                   <strong>CWE:</strong> CWE-209</p>
+                <p><strong>File:</strong> halodoc-ios-master/crash_monkey_result/UIAutoMonkey.js:165</p>
+                <p><strong>Confidence:</strong> 0.70</p>
+                <p><strong>Description:</strong> Information disclosure in errors detected in JavaScript code</p>
+                <p><strong>Attack Vector:</strong> Data leakage, privacy violations, sensitive exposure</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>    	if (!event) {
+    		UIALogger.logMessage("Attempted to " + name)
+>>> 		throw new Error("Attempted to fire an undefined event '" + name + "'!")
+    	}
+    	event.apply(this);</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Implement proper error handling without information disclosure</p>
+            </div>
+            
+
+            <div class="finding medium">
+                <h3>4. Insecure HTTP usage</h3>
+                <p><strong>Severity:</strong> Medium |
+                   <strong>STRIDE Category:</strong> Information_Disclosure |
+                   <strong>CWE:</strong> CWE-319</p>
+                <p><strong>File:</strong> halodoc-ios-master/crash_monkey_result/UIAutoMonkey.js:2</p>
+                <p><strong>Confidence:</strong> 0.70</p>
+                <p><strong>Description:</strong> Insecure HTTP usage detected in JavaScript code</p>
+                <p><strong>Attack Vector:</strong> Data leakage, privacy violations, sensitive exposure</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>    
+>>> // Copyright (c) 2013 Jonathan Penn (http://cocoamanifest.net/)
+    
+    // Permission is hereby granted, free of charge, to any person obtaining a copy</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Use HTTPS/TLS for all communications</p>
+            </div>
+            
+</body>
+</html>
+        

@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Threat Analysis Report - halodoc-android-master</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .header { background: #2c3e50; color: white; padding: 20px; margin-bottom: 20px; }
+        .summary { background: #ecf0f1; padding: 15px; margin-bottom: 20px; }
+        .finding { border-left: 4px solid #3498db; padding: 15px; margin: 10px 0; background: #f8f9fa; }
+        .critical { border-left-color: #e74c3c; }
+        .high { border-left-color: #f39c12; }
+        .medium { border-left-color: #f1c40f; }
+        .low { border-left-color: #27ae60; }
+        .code { background: #2c3e50; color: #ecf0f1; padding: 10px; font-family: monospace; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>STRIDE Threat Analysis Report</h1>
+        <h2>Project: halodoc-android-master</h2>
+        <p>Generated: 2025-10-18 21:45:20</p>
+    </div>
+
+    <div class="summary">
+        <h2>Executive Summary</h2>
+        <p><strong>Total Findings:</strong> 4</p>
+        <p><strong>Critical:</strong> 1 | <strong>High:</strong> 0 |
+           <strong>Medium:</strong> 3 | <strong>Low:</strong> 0</p>
+        <p><strong>Analysis Methodology:</strong> STRIDE (Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege)</p>
+    </div>
+
+    <h2>STRIDE Category Distribution</h2>
+    <table>
+        <tr><th>STRIDE Category</th><th>Count</th><th>Description</th></tr>
+        <tr><td>Repudiation</td><td>3</td><td>Denial of actions and audit trail attacks</td></tr>
+<tr><td>Tampering</td><td>1</td><td>Data and code modification attacks</td></tr>
+    </table>
+
+    <h2>Detailed Findings</h2>
+    
+            <div class="finding critical">
+                <h3>1. Command injection</h3>
+                <p><strong>Severity:</strong> Critical |
+                   <strong>STRIDE Category:</strong> Tampering |
+                   <strong>CWE:</strong> CWE-78</p>
+                <p><strong>File:</strong> halodoc-android-master/app/src/main/java/com/linkdokter/halodoc/android/util/AppHelper.kt:93</p>
+                <p><strong>Confidence:</strong> 0.90</p>
+                <p><strong>Description:</strong> Command injection detected in Kotlin code</p>
+                <p><strong>Attack Vector:</strong> Data modification, code injection, integrity violations</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>            DisplayMetrics().also { display.getRealMetrics(it) }
+        } else {
+>>>         Resources.getSystem().displayMetrics
+        }
+        return metrics.heightPixels</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Use parameterized commands, input validation, and avoid shell execution</p>
+            </div>
+            
+
+            <div class="finding medium">
+                <h3>2. Logging disabled</h3>
+                <p><strong>Severity:</strong> Medium |
+                   <strong>STRIDE Category:</strong> Repudiation |
+                   <strong>CWE:</strong> CWE-778</p>
+                <p><strong>File:</strong> halodoc-android-master/app/src/main/java/com/linkdokter/halodoc/android/AppUserLoginStateObserver.kt:24</p>
+                <p><strong>Confidence:</strong> 0.70</p>
+                <p><strong>Description:</strong> Logging disabled detected in Kotlin code</p>
+                <p><strong>Attack Vector:</strong> Log tampering, evidence destruction, transaction denial</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>                                    private val transporterLogger: HalodocTransporterLogger = HalodocTransporterLogger.getInstance()) {
+    
+>>>     private var loginState : LoginState? = null
+    
+        private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Implement comprehensive logging and audit trails</p>
+            </div>
+            
+
+            <div class="finding medium">
+                <h3>3. Logging disabled</h3>
+                <p><strong>Severity:</strong> Medium |
+                   <strong>STRIDE Category:</strong> Repudiation |
+                   <strong>CWE:</strong> CWE-778</p>
+                <p><strong>File:</strong> halodoc-android-master/app/src/main/java/com/linkdokter/halodoc/android/AppUserLoginStateObserver.kt:82</p>
+                <p><strong>Confidence:</strong> 0.80</p>
+                <p><strong>Description:</strong> Logging disabled detected in Kotlin code</p>
+                <p><strong>Attack Vector:</strong> Log tampering, evidence destruction, transaction denial</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>    
+        companion object {
+>>>         private var INSTANCE: AppUserLoginStateObserver? = null
+            @JvmStatic
+            fun getInstance(floresModule: FloresModule,</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Implement comprehensive logging and audit trails</p>
+            </div>
+            
+
+            <div class="finding medium">
+                <h3>4. Logging disabled</h3>
+                <p><strong>Severity:</strong> Medium |
+                   <strong>STRIDE Category:</strong> Repudiation |
+                   <strong>CWE:</strong> CWE-778</p>
+                <p><strong>File:</strong> halodoc-android-master/app/src/main/java/com/linkdokter/halodoc/android/logger/HalodocNetworkInterceptor.kt:151</p>
+                <p><strong>Confidence:</strong> 0.80</p>
+                <p><strong>Description:</strong> Logging disabled detected in Kotlin code</p>
+                <p><strong>Attack Vector:</strong> Log tampering, evidence destruction, transaction denial</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>    
+                when {
+>>>                 !logBody || requestBody == null -> {
+                        logger.logInTimber("--> END ${request.method}")
+                    }</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Implement comprehensive logging and audit trails</p>
+            </div>
+            
+</body>
+</html>
+        

@@ -1,0 +1,37 @@
+THREAT MODELING REPORT - halodoc-android-master
+============================================================
+Analysis Date: 2025-10-18 21:45:20
+Methodology: STRIDE
+Total Findings: 4
+
+SEVERITY DISTRIBUTION:
+  Critical: 1
+  High: 0
+  Medium: 3
+  Low: 0
+
+STRIDE CATEGORY DISTRIBUTION:
+  Repudiation: 3
+  Tampering: 1
+
+TOP FINDINGS BY SEVERITY:
+----------------------------------------
+1. Command injection (Critical)
+   File: halodoc-android-master/app/src/main/java/com/linkdokter/halodoc/android/util/AppHelper.kt:93
+   STRIDE: Tampering | CWE: CWE-78
+   Description: Command injection detected in Kotlin code
+
+2. Logging disabled (Medium)
+   File: halodoc-android-master/app/src/main/java/com/linkdokter/halodoc/android/AppUserLoginStateObserver.kt:24
+   STRIDE: Repudiation | CWE: CWE-778
+   Description: Logging disabled detected in Kotlin code
+
+3. Logging disabled (Medium)
+   File: halodoc-android-master/app/src/main/java/com/linkdokter/halodoc/android/AppUserLoginStateObserver.kt:82
+   STRIDE: Repudiation | CWE: CWE-778
+   Description: Logging disabled detected in Kotlin code
+
+4. Logging disabled (Medium)
+   File: halodoc-android-master/app/src/main/java/com/linkdokter/halodoc/android/logger/HalodocNetworkInterceptor.kt:151
+   STRIDE: Repudiation | CWE: CWE-778
+   Description: Logging disabled detected in Kotlin code

@@ -1,0 +1,78 @@
+{
+  "project_name": "halodoc-ios-master",
+  "analysis_date": "2025-10-18T21:45:23.124275",
+  "methodology": "STRIDE",
+  "total_findings": 4,
+  "severity_distribution": {
+    "Critical": 2,
+    "High": 0,
+    "Medium": 2,
+    "Low": 0
+  },
+  "stride_distribution": {
+    "Information_Disclosure": 2,
+    "Tampering": 2
+  },
+  "findings": [
+    {
+      "id": "7a1dce375ce0cbe1",
+      "project_name": "halodoc-ios-master",
+      "file_path": "halodoc-ios-master/crash_monkey_result/UIAutoMonkey.js",
+      "line_number": 165,
+      "stride_category": "Information_Disclosure",
+      "threat_name": "Information disclosure in errors",
+      "description": "Information disclosure in errors detected in JavaScript code",
+      "severity": "Medium",
+      "confidence": 0.7,
+      "code_snippet": "    \tif (!event) {\n    \t\tUIALogger.logMessage(\"Attempted to \" + name)\n>>> \t\tthrow new Error(\"Attempted to fire an undefined event '\" + name + \"'!\")\n    \t}\n    \tevent.apply(this);",
+      "cwe_id": "CWE-209",
+      "mitigation": "Implement proper error handling without information disclosure",
+      "attack_vector": "Data leakage, privacy violations, sensitive exposure"
+    },
+    {
+      "id": "2c9b901ea3e08416",
+      "project_name": "halodoc-ios-master",
+      "file_path": "halodoc-ios-master/crash_monkey_result/UIAutoMonkey.js",
+      "line_number": 2,
+      "stride_category": "Information_Disclosure",
+      "threat_name": "Insecure HTTP usage",
+      "description": "Insecure HTTP usage detected in JavaScript code",
+      "severity": "Medium",
+      "confidence": 0.7,
+      "code_snippet": "    \n>>> // Copyright (c) 2013 Jonathan Penn (http://cocoamanifest.net/)\n    \n    // Permission is hereby granted, free of charge, to any person obtaining a copy",
+      "cwe_id": "CWE-319",
+      "mitigation": "Use HTTPS/TLS for all communications",
+      "attack_vector": "Data leakage, privacy violations, sensitive exposure"
+    },
+    {
+      "id": "fcd1b6a957175223",
+      "project_name": "halodoc-ios-master",
+      "file_path": "halodoc-ios-master/crash_monkey_result/result_000/result_view.js",
+      "line_number": 42,
+      "stride_category": "Tampering",
+      "threat_name": "Code injection via eval",
+      "description": "Code injection via eval detected in JavaScript code",
+      "severity": "Critical",
+      "confidence": 0.8999999999999999,
+      "code_snippet": "                  index: i\n                });\n>>>             return eval(log.message);\n              });\n              return img.src = log.screen_image + '.png';",
+      "cwe_id": "CWE-95",
+      "mitigation": "Avoid dynamic code execution, use safe alternatives",
+      "attack_vector": "Data modification, code injection, integrity violations"
+    },
+    {
+      "id": "a0b5fb66e21471e0",
+      "project_name": "halodoc-ios-master",
+      "file_path": "halodoc-ios-master/crash_monkey_result/result_001/result_view.js",
+      "line_number": 42,
+      "stride_category": "Tampering",
+      "threat_name": "Code injection via eval",
+      "description": "Code injection via eval detected in JavaScript code",
+      "severity": "Critical",
+      "confidence": 0.8999999999999999,
+      "code_snippet": "                  index: i\n                });\n>>>             return eval(log.message);\n              });\n              return img.src = log.screen_image + '.png';",
+      "cwe_id": "CWE-95",
+      "mitigation": "Avoid dynamic code execution, use safe alternatives",
+      "attack_vector": "Data modification, code injection, integrity violations"
+    }
+  ]
+}

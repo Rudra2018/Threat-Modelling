@@ -1,0 +1,67 @@
+THREAT MODELING REPORT - batavia-client-master
+============================================================
+Analysis Date: 2025-10-18 21:45:23
+Methodology: STRIDE
+Total Findings: 16
+
+SEVERITY DISTRIBUTION:
+  Critical: 0
+  High: 1
+  Medium: 15
+  Low: 0
+
+STRIDE CATEGORY DISTRIBUTION:
+  Information_Disclosure: 15
+  Spoofing: 1
+
+TOP FINDINGS BY SEVERITY:
+----------------------------------------
+1. Hardcoded password (High)
+   File: batavia-client-master/src/app/modules/login/login.component.ts:19
+   STRIDE: Spoofing | CWE: CWE-798
+   Description: Hardcoded password detected in TypeScript code
+
+2. Insecure HTTP usage (Medium)
+   File: batavia-client-master/src/polyfills.ts:33
+   STRIDE: Information_Disclosure | CWE: CWE-319
+   Description: Insecure HTTP usage detected in TypeScript code
+
+3. Insecure HTTP usage (Medium)
+   File: batavia-client-master/src/environments/environment.ts:12
+   STRIDE: Information_Disclosure | CWE: CWE-319
+   Description: Insecure HTTP usage detected in TypeScript code
+
+4. Insecure HTTP usage (Medium)
+   File: batavia-client-master/src/environments/environment.ts:29
+   STRIDE: Information_Disclosure | CWE: CWE-319
+   Description: Insecure HTTP usage detected in TypeScript code
+
+5. Insecure HTTP usage (Medium)
+   File: batavia-client-master/src/environments/environment.ts:33
+   STRIDE: Information_Disclosure | CWE: CWE-319
+   Description: Insecure HTTP usage detected in TypeScript code
+
+6. Insecure HTTP usage (Medium)
+   File: batavia-client-master/src/environments/environment.ts:37
+   STRIDE: Information_Disclosure | CWE: CWE-319
+   Description: Insecure HTTP usage detected in TypeScript code
+
+7. Insecure HTTP usage (Medium)
+   File: batavia-client-master/src/environments/environment.ts:41
+   STRIDE: Information_Disclosure | CWE: CWE-319
+   Description: Insecure HTTP usage detected in TypeScript code
+
+8. Insecure HTTP usage (Medium)
+   File: batavia-client-master/src/environments/environment.ts:45
+   STRIDE: Information_Disclosure | CWE: CWE-319
+   Description: Insecure HTTP usage detected in TypeScript code
+
+9. Insecure HTTP usage (Medium)
+   File: batavia-client-master/src/environments/environment.ts:49
+   STRIDE: Information_Disclosure | CWE: CWE-319
+   Description: Insecure HTTP usage detected in TypeScript code
+
+10. Insecure HTTP usage (Medium)
+   File: batavia-client-master/src/environments/environment.ts:53
+   STRIDE: Information_Disclosure | CWE: CWE-319
+   Description: Insecure HTTP usage detected in TypeScript code

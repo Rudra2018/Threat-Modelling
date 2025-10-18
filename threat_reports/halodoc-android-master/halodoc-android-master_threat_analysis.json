@@ -1,0 +1,78 @@
+{
+  "project_name": "halodoc-android-master",
+  "analysis_date": "2025-10-18T21:45:20.860150",
+  "methodology": "STRIDE",
+  "total_findings": 4,
+  "severity_distribution": {
+    "Critical": 1,
+    "High": 0,
+    "Medium": 3,
+    "Low": 0
+  },
+  "stride_distribution": {
+    "Repudiation": 3,
+    "Tampering": 1
+  },
+  "findings": [
+    {
+      "id": "6fc44f9df44f88d3",
+      "project_name": "halodoc-android-master",
+      "file_path": "halodoc-android-master/app/src/main/java/com/linkdokter/halodoc/android/AppUserLoginStateObserver.kt",
+      "line_number": 24,
+      "stride_category": "Repudiation",
+      "threat_name": "Logging disabled",
+      "description": "Logging disabled detected in Kotlin code",
+      "severity": "Medium",
+      "confidence": 0.7,
+      "code_snippet": "                                    private val transporterLogger: HalodocTransporterLogger = HalodocTransporterLogger.getInstance()) {\n    \n>>>     private var loginState : LoginState? = null\n    \n        private val applicationScope = CoroutineScope(SupervisorJob() + Dispatchers.Main)",
+      "cwe_id": "CWE-778",
+      "mitigation": "Implement comprehensive logging and audit trails",
+      "attack_vector": "Log tampering, evidence destruction, transaction denial"
+    },
+    {
+      "id": "c2868b30ee3f0fea",
+      "project_name": "halodoc-android-master",
+      "file_path": "halodoc-android-master/app/src/main/java/com/linkdokter/halodoc/android/AppUserLoginStateObserver.kt",
+      "line_number": 82,
+      "stride_category": "Repudiation",
+      "threat_name": "Logging disabled",
+      "description": "Logging disabled detected in Kotlin code",
+      "severity": "Medium",
+      "confidence": 0.7999999999999999,
+      "code_snippet": "    \n        companion object {\n>>>         private var INSTANCE: AppUserLoginStateObserver? = null\n            @JvmStatic\n            fun getInstance(floresModule: FloresModule,",
+      "cwe_id": "CWE-778",
+      "mitigation": "Implement comprehensive logging and audit trails",
+      "attack_vector": "Log tampering, evidence destruction, transaction denial"
+    },
+    {
+      "id": "b820426614c3f9a6",
+      "project_name": "halodoc-android-master",
+      "file_path": "halodoc-android-master/app/src/main/java/com/linkdokter/halodoc/android/logger/HalodocNetworkInterceptor.kt",
+      "line_number": 151,
+      "stride_category": "Repudiation",
+      "threat_name": "Logging disabled",
+      "description": "Logging disabled detected in Kotlin code",
+      "severity": "Medium",
+      "confidence": 0.7999999999999999,
+      "code_snippet": "    \n                when {\n>>>                 !logBody || requestBody == null -> {\n                        logger.logInTimber(\"--> END ${request.method}\")\n                    }",
+      "cwe_id": "CWE-778",
+      "mitigation": "Implement comprehensive logging and audit trails",
+      "attack_vector": "Log tampering, evidence destruction, transaction denial"
+    },
+    {
+      "id": "8e70cae6f78b801a",
+      "project_name": "halodoc-android-master",
+      "file_path": "halodoc-android-master/app/src/main/java/com/linkdokter/halodoc/android/util/AppHelper.kt",
+      "line_number": 93,
+      "stride_category": "Tampering",
+      "threat_name": "Command injection",
+      "description": "Command injection detected in Kotlin code",
+      "severity": "Critical",
+      "confidence": 0.8999999999999999,
+      "code_snippet": "            DisplayMetrics().also { display.getRealMetrics(it) }\n        } else {\n>>>         Resources.getSystem().displayMetrics\n        }\n        return metrics.heightPixels",
+      "cwe_id": "CWE-78",
+      "mitigation": "Use parameterized commands, input validation, and avoid shell execution",
+      "attack_vector": "Data modification, code injection, integrity violations"
+    }
+  ]
+}

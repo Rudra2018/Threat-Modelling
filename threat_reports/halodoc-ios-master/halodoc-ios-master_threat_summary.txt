@@ -1,0 +1,37 @@
+THREAT MODELING REPORT - halodoc-ios-master
+============================================================
+Analysis Date: 2025-10-18 21:45:23
+Methodology: STRIDE
+Total Findings: 4
+
+SEVERITY DISTRIBUTION:
+  Critical: 2
+  High: 0
+  Medium: 2
+  Low: 0
+
+STRIDE CATEGORY DISTRIBUTION:
+  Information_Disclosure: 2
+  Tampering: 2
+
+TOP FINDINGS BY SEVERITY:
+----------------------------------------
+1. Code injection via eval (Critical)
+   File: halodoc-ios-master/crash_monkey_result/result_000/result_view.js:42
+   STRIDE: Tampering | CWE: CWE-95
+   Description: Code injection via eval detected in JavaScript code
+
+2. Code injection via eval (Critical)
+   File: halodoc-ios-master/crash_monkey_result/result_001/result_view.js:42
+   STRIDE: Tampering | CWE: CWE-95
+   Description: Code injection via eval detected in JavaScript code
+
+3. Information disclosure in errors (Medium)
+   File: halodoc-ios-master/crash_monkey_result/UIAutoMonkey.js:165
+   STRIDE: Information_Disclosure | CWE: CWE-209
+   Description: Information disclosure in errors detected in JavaScript code
+
+4. Insecure HTTP usage (Medium)
+   File: halodoc-ios-master/crash_monkey_result/UIAutoMonkey.js:2
+   STRIDE: Information_Disclosure | CWE: CWE-319
+   Description: Insecure HTTP usage detected in JavaScript code

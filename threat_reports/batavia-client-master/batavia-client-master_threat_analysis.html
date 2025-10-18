@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Threat Analysis Report - batavia-client-master</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .header { background: #2c3e50; color: white; padding: 20px; margin-bottom: 20px; }
+        .summary { background: #ecf0f1; padding: 15px; margin-bottom: 20px; }
+        .finding { border-left: 4px solid #3498db; padding: 15px; margin: 10px 0; background: #f8f9fa; }
+        .critical { border-left-color: #e74c3c; }
+        .high { border-left-color: #f39c12; }
+        .medium { border-left-color: #f1c40f; }
+        .low { border-left-color: #27ae60; }
+        .code { background: #2c3e50; color: #ecf0f1; padding: 10px; font-family: monospace; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>STRIDE Threat Analysis Report</h1>
+        <h2>Project: batavia-client-master</h2>
+        <p>Generated: 2025-10-18 21:45:23</p>
+    </div>
+
+    <div class="summary">
+        <h2>Executive Summary</h2>
+        <p><strong>Total Findings:</strong> 16</p>
+        <p><strong>Critical:</strong> 0 | <strong>High:</strong> 1 |
+           <strong>Medium:</strong> 15 | <strong>Low:</strong> 0</p>
+        <p><strong>Analysis Methodology:</strong> STRIDE (Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege)</p>
+    </div>
+
+    <h2>STRIDE Category Distribution</h2>
+    <table>
+        <tr><th>STRIDE Category</th><th>Count</th><th>Description</th></tr>
+        <tr><td>Information_Disclosure</td><td>15</td><td>Unauthorized data access and privacy violations</td></tr>
+<tr><td>Spoofing</td><td>1</td><td>Identity impersonation and authentication attacks</td></tr>
+    </table>
+
+    <h2>Detailed Findings</h2>
+    
+            <div class="finding high">
+                <h3>1. Hardcoded password</h3>
+                <p><strong>Severity:</strong> High |
+                   <strong>STRIDE Category:</strong> Spoofing |
+                   <strong>CWE:</strong> CWE-798</p>
+                <p><strong>File:</strong> batavia-client-master/src/app/modules/login/login.component.ts:19</p>
+                <p><strong>Confidence:</strong> 0.80</p>
+                <p><strong>Description:</strong> Hardcoded password detected in TypeScript code</p>
+                <p><strong>Attack Vector:</strong> Identity theft, credential compromise, session hijacking</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>      private ngUnsubscribe$ = new Subject<void>();
+      username = '';
+>>>   password = '';
+      showErrorMsg = false;
+      returnUrl: string;</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Use environment variables or secure credential management</p>
+            </div>
+            
+
+            <div class="finding medium">
+                <h3>2. Insecure HTTP usage</h3>
+                <p><strong>Severity:</strong> Medium |
+                   <strong>STRIDE Category:</strong> Information_Disclosure |
+                   <strong>CWE:</strong> CWE-319</p>
+                <p><strong>File:</strong> batavia-client-master/src/polyfills.ts:33</p>
+                <p><strong>Confidence:</strong> 0.70</p>
+                <p><strong>Description:</strong> Insecure HTTP usage detected in TypeScript code</p>
+                <p><strong>Attack Vector:</strong> Data leakage, privacy violations, sensitive exposure</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>    /**
+     * Required to support Web Animations `@angular/animation`.
+>>>  * Needed for: All but Chrome, Firefox and Opera. http://caniuse.com/#feat=web-animation
+     **/
+    </pre>
+                </div>
+                <p><strong>Mitigation:</strong> Use HTTPS/TLS for all communications</p>
+            </div>
+            
+
+            <div class="finding medium">
+                <h3>3. Insecure HTTP usage</h3>
+                <p><strong>Severity:</strong> Medium |
+                   <strong>STRIDE Category:</strong> Information_Disclosure |
+                   <strong>CWE:</strong> CWE-319</p>
+                <p><strong>File:</strong> batavia-client-master/src/environments/environment.ts:12</p>
+                <p><strong>Confidence:</strong> 0.70</p>
+                <p><strong>Description:</strong> Insecure HTTP usage detected in TypeScript code</p>
+                <p><strong>Attack Vector:</strong> Data leakage, privacy violations, sensitive exposure</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>      VERSION: require('../../package.json').version,
+      // baseApiUrl: 'https://controlcenter.stage.halodoc.com',
+>>>   baseApiUrl: 'http://localhost:4200',
+      baseAuthUrl: '/api',
+      googleMapApi: {</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Use HTTPS/TLS for all communications</p>
+            </div>
+            
+
+            <div class="finding medium">
+                <h3>4. Insecure HTTP usage</h3>
+                <p><strong>Severity:</strong> Medium |
+                   <strong>STRIDE Category:</strong> Information_Disclosure |
+                   <strong>CWE:</strong> CWE-319</p>
+                <p><strong>File:</strong> batavia-client-master/src/environments/environment.ts:29</p>
+                <p><strong>Confidence:</strong> 0.70</p>
+                <p><strong>Description:</strong> Insecure HTTP usage detected in TypeScript code</p>
+                <p><strong>Attack Vector:</strong> Data leakage, privacy violations, sensitive exposure</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>      mfeConfig: {
+        bataviaCmsMfe: {
+>>>       remoteEntry: 'http://localhost:4200/cms-mfe/remoteEntry.js',
+          exposedModule: 'CmsMfeWrapperModule',
+        },</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Use HTTPS/TLS for all communications</p>
+            </div>
+            
+
+            <div class="finding medium">
+                <h3>5. Insecure HTTP usage</h3>
+                <p><strong>Severity:</strong> Medium |
+                   <strong>STRIDE Category:</strong> Information_Disclosure |
+                   <strong>CWE:</strong> CWE-319</p>
+                <p><strong>File:</strong> batavia-client-master/src/environments/environment.ts:33</p>
+                <p><strong>Confidence:</strong> 0.70</p>
+                <p><strong>Description:</strong> Insecure HTTP usage detected in TypeScript code</p>
+                <p><strong>Attack Vector:</strong> Data leakage, privacy violations, sensitive exposure</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>        },
+        bataviaLabsMfe: {
+>>>       remoteEntry: 'http://localhost:4200/labs-mfe/remoteEntry.js',
+          exposedModule: 'LabsMfeWrapperModule',
+        },</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Use HTTPS/TLS for all communications</p>
+            </div>
+            
+
+            <div class="finding medium">
+                <h3>6. Insecure HTTP usage</h3>
+                <p><strong>Severity:</strong> Medium |
+                   <strong>STRIDE Category:</strong> Information_Disclosure |
+                   <strong>CWE:</strong> CWE-319</p>
+                <p><strong>File:</strong> batavia-client-master/src/environments/environment.ts:37</p>
+                <p><strong>Confidence:</strong> 0.70</p>
+                <p><strong>Description:</strong> Insecure HTTP usage detected in TypeScript code</p>
+                <p><strong>Attack Vector:</strong> Data leakage, privacy violations, sensitive exposure</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>        },
+        bataviaHospitalMfe: {
+>>>       remoteEntry: 'http://localhost:4200/hospital-mfe/remoteEntry.js',
+          exposedModule: 'HospitalMfeWrapperModule',
+        },</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Use HTTPS/TLS for all communications</p>
+            </div>
+            
+
+            <div class="finding medium">
+                <h3>7. Insecure HTTP usage</h3>
+                <p><strong>Severity:</strong> Medium |
+                   <strong>STRIDE Category:</strong> Information_Disclosure |
+                   <strong>CWE:</strong> CWE-319</p>
+                <p><strong>File:</strong> batavia-client-master/src/environments/environment.ts:41</p>
+                <p><strong>Confidence:</strong> 0.70</p>
+                <p><strong>Description:</strong> Insecure HTTP usage detected in TypeScript code</p>
+                <p><strong>Attack Vector:</strong> Data leakage, privacy violations, sensitive exposure</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>        },
+        bataviaSubscriptionsMfe: {
+>>>       remoteEntry: 'http://localhost:4200/subscriptions-mfe/remoteEntry.js',
+          exposedModule: 'SubscriptionsMfeWrapperModule',
+        },</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Use HTTPS/TLS for all communications</p>
+            </div>
+            
+
+            <div class="finding medium">
+                <h3>8. Insecure HTTP usage</h3>
+                <p><strong>Severity:</strong> Medium |
+                   <strong>STRIDE Category:</strong> Information_Disclosure |
+                   <strong>CWE:</strong> CWE-319</p>
+                <p><strong>File:</strong> batavia-client-master/src/environments/environment.ts:45</p>
+                <p><strong>Confidence:</strong> 0.70</p>
+                <p><strong>Description:</strong> Insecure HTTP usage detected in TypeScript code</p>
+                <p><strong>Attack Vector:</strong> Data leakage, privacy violations, sensitive exposure</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>        },
+        bataviaContactDoctorMfe: {
+>>>       remoteEntry: 'http://localhost:4200/contact-doctor-mfe/remoteEntry.js',
+          exposedModule: 'ContactDoctorMfeWrapperModule',
+        },</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Use HTTPS/TLS for all communications</p>
+            </div>
+            
+
+            <div class="finding medium">
+                <h3>9. Insecure HTTP usage</h3>
+                <p><strong>Severity:</strong> Medium |
+                   <strong>STRIDE Category:</strong> Information_Disclosure |
+                   <strong>CWE:</strong> CWE-319</p>
+                <p><strong>File:</strong> batavia-client-master/src/environments/environment.ts:49</p>
+                <p><strong>Confidence:</strong> 0.70</p>
+                <p><strong>Description:</strong> Insecure HTTP usage detected in TypeScript code</p>
+                <p><strong>Attack Vector:</strong> Data leakage, privacy violations, sensitive exposure</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>        },
+        bataviaFinanceMfe: {
+>>>       remoteEntry: 'http://localhost:4200/finance-mfe/remoteEntry.js',
+          exposedModule: 'FinanceMfeWrapperModule',
+        },</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Use HTTPS/TLS for all communications</p>
+            </div>
+            
+
+            <div class="finding medium">
+                <h3>10. Insecure HTTP usage</h3>
+                <p><strong>Severity:</strong> Medium |
+                   <strong>STRIDE Category:</strong> Information_Disclosure |
+                   <strong>CWE:</strong> CWE-319</p>
+                <p><strong>File:</strong> batavia-client-master/src/environments/environment.ts:53</p>
+                <p><strong>Confidence:</strong> 0.70</p>
+                <p><strong>Description:</strong> Insecure HTTP usage detected in TypeScript code</p>
+                <p><strong>Attack Vector:</strong> Data leakage, privacy violations, sensitive exposure</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>        },
+        bataviaMarketingMfe: {
+>>>       remoteEntry: 'http://localhost:4200/marketing-mfe/remoteEntry.js',
+          exposedModule: 'MarketingMfeWrapperModule',
+        },</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Use HTTPS/TLS for all communications</p>
+            </div>
+            
+
+            <div class="finding medium">
+                <h3>11. Insecure HTTP usage</h3>
+                <p><strong>Severity:</strong> Medium |
+                   <strong>STRIDE Category:</strong> Information_Disclosure |
+                   <strong>CWE:</strong> CWE-319</p>
+                <p><strong>File:</strong> batavia-client-master/src/environments/environment.ts:57</p>
+                <p><strong>Confidence:</strong> 0.70</p>
+                <p><strong>Description:</strong> Insecure HTTP usage detected in TypeScript code</p>
+                <p><strong>Attack Vector:</strong> Data leakage, privacy violations, sensitive exposure</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>        },
+        bataviaCustomersMfe: {
+>>>       remoteEntry: 'http://localhost:4200/customers-mfe/remoteEntry.js',
+          exposedModule: 'CustomersMfeWrapperModule',
+        },</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Use HTTPS/TLS for all communications</p>
+            </div>
+            
+
+            <div class="finding medium">
+                <h3>12. Insecure HTTP usage</h3>
+                <p><strong>Severity:</strong> Medium |
+                   <strong>STRIDE Category:</strong> Information_Disclosure |
+                   <strong>CWE:</strong> CWE-319</p>
+                <p><strong>File:</strong> batavia-client-master/src/environments/environment.ts:61</p>
+                <p><strong>Confidence:</strong> 0.80</p>
+                <p><strong>Description:</strong> Insecure HTTP usage detected in TypeScript code</p>
+                <p><strong>Attack Vector:</strong> Data leakage, privacy violations, sensitive exposure</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>        },
+        bataviaAdministrationMfe: {
+>>>       remoteEntry: 'http://localhost:4200/users-mfe/remoteEntry.js',
+          exposedModule: 'AdministrationMfeWrapperModule',
+        },</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Use HTTPS/TLS for all communications</p>
+            </div>
+            
+
+            <div class="finding medium">
+                <h3>13. Insecure HTTP usage</h3>
+                <p><strong>Severity:</strong> Medium |
+                   <strong>STRIDE Category:</strong> Information_Disclosure |
+                   <strong>CWE:</strong> CWE-319</p>
+                <p><strong>File:</strong> batavia-client-master/src/environments/environment.ts:65</p>
+                <p><strong>Confidence:</strong> 0.70</p>
+                <p><strong>Description:</strong> Insecure HTTP usage detected in TypeScript code</p>
+                <p><strong>Attack Vector:</strong> Data leakage, privacy violations, sensitive exposure</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>        },
+        bataviaEtoolsMfe: {
+>>>       remoteEntry: 'http://localhost:4200/etools-mfe/remoteEntry.js',
+          exposedModule: 'EtoolsMfeWrapperModule',
+        },</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Use HTTPS/TLS for all communications</p>
+            </div>
+            
+
+            <div class="finding medium">
+                <h3>14. Insecure HTTP usage</h3>
+                <p><strong>Severity:</strong> Medium |
+                   <strong>STRIDE Category:</strong> Information_Disclosure |
+                   <strong>CWE:</strong> CWE-319</p>
+                <p><strong>File:</strong> batavia-client-master/src/environments/environment.ts:69</p>
+                <p><strong>Confidence:</strong> 0.70</p>
+                <p><strong>Description:</strong> Insecure HTTP usage detected in TypeScript code</p>
+                <p><strong>Attack Vector:</strong> Data leakage, privacy violations, sensitive exposure</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>        },
+        bataviaInsuranceMfe: {
+>>>       remoteEntry: 'http://localhost:4200/insurance-mfe/remoteEntry.js',
+          exposedModule: 'InsuranceMfeWrapperModule',
+        },</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Use HTTPS/TLS for all communications</p>
+            </div>
+            
+
+            <div class="finding medium">
+                <h3>15. Insecure HTTP usage</h3>
+                <p><strong>Severity:</strong> Medium |
+                   <strong>STRIDE Category:</strong> Information_Disclosure |
+                   <strong>CWE:</strong> CWE-319</p>
+                <p><strong>File:</strong> batavia-client-master/src/environments/environment.ts:73</p>
+                <p><strong>Confidence:</strong> 0.70</p>
+                <p><strong>Description:</strong> Insecure HTTP usage detected in TypeScript code</p>
+                <p><strong>Attack Vector:</strong> Data leakage, privacy violations, sensitive exposure</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>        },
+        bataviaPharmacyMfe: {
+>>>       remoteEntry: 'http://localhost:4200/pharmacy-mfe/remoteEntry.js',
+          exposedModule: 'PharmacyMfeWrapperModule',
+        },</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Use HTTPS/TLS for all communications</p>
+            </div>
+            
+
+            <div class="finding medium">
+                <h3>16. Insecure HTTP usage</h3>
+                <p><strong>Severity:</strong> Medium |
+                   <strong>STRIDE Category:</strong> Information_Disclosure |
+                   <strong>CWE:</strong> CWE-319</p>
+                <p><strong>File:</strong> batavia-client-master/src/environments/environment.ts:77</p>
+                <p><strong>Confidence:</strong> 0.70</p>
+                <p><strong>Description:</strong> Insecure HTTP usage detected in TypeScript code</p>
+                <p><strong>Attack Vector:</strong> Data leakage, privacy violations, sensitive exposure</p>
+                <div class="code">
+                    <strong>Code Evidence:</strong><br>
+                    <pre>        },
+        medexDeliveryMfe: {
+>>>       remoteEntry: 'http://localhost:4200/medex-mfe/remoteEntry.js',
+          exposedModule: 'MedexMfeWrapperModule',
+        },</pre>
+                </div>
+                <p><strong>Mitigation:</strong> Use HTTPS/TLS for all communications</p>
+            </div>
+            
+</body>
+</html>
+        

@@ -1,0 +1,93 @@
+# Enhanced Threat Modeling Configuration
+claude_api_key: "YOUR_CLAUDE_API_KEY_HERE"  # Replace with your actual Claude API key
+
+# Analysis Settings
+analysis:
+  max_files_per_project: 50
+  max_file_size: 100000  # bytes
+  timeout: 300  # seconds
+  confidence_threshold: 0.6
+
+# STRIDE Configuration
+stride:
+  categories:
+    - Spoofing
+    - Tampering
+    - Repudiation
+    - Information_Disclosure
+    - Denial_of_Service
+    - Elevation_of_Privilege
+
+  severity_mapping:
+    Critical: 0.9
+    High: 0.7
+    Medium: 0.5
+    Low: 0.3
+
+# File Analysis Patterns
+file_patterns:
+  include:
+    - "*.py"
+    - "*.js"
+    - "*.ts"
+    - "*.java"
+    - "*.php"
+    - "*.go"
+    - "*.rb"
+    - "*.cs"
+    - "*.cpp"
+    - "*.c"
+  exclude:
+    - "node_modules/*"
+    - ".git/*"
+    - "*.min.js"
+    - "*.test.*"
+    - "test/*"
+    - "tests/*"
+
+# Security Patterns
+security_patterns:
+  high_risk:
+    - "eval("
+    - "exec("
+    - "system("
+    - "shell_exec("
+    - "innerHTML"
+    - "document.write"
+    - "pickle.loads"
+    - "yaml.load"
+
+  crypto_weak:
+    - "md5"
+    - "sha1"
+    - "des"
+    - "rc4"
+
+  injection_patterns:
+    - "sql.*input"
+    - "query.*+"
+    - "WHERE.*+"
+    - "SELECT.*+"
+
+# Report Configuration
+reporting:
+  output_formats:
+    - pdf
+    - html
+    - json
+
+  include_poc: true
+  include_diagrams: true
+  include_mitigations: true
+
+  pdf_options:
+    font_size: 11
+    page_size: "A4"
+    include_cover: true
+    include_toc: true
+
+# Database Settings
+database:
+  path: "threat_intelligence.db"
+  backup_enabled: true
+  retention_days: 365

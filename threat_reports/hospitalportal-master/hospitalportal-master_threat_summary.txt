@@ -1,0 +1,67 @@
+THREAT MODELING REPORT - hospitalportal-master
+============================================================
+Analysis Date: 2025-10-18 21:45:22
+Methodology: STRIDE
+Total Findings: 82
+
+SEVERITY DISTRIBUTION:
+  Critical: 55
+  High: 0
+  Medium: 27
+  Low: 0
+
+STRIDE CATEGORY DISTRIBUTION:
+  Information_Disclosure: 27
+  Tampering: 55
+
+TOP FINDINGS BY SEVERITY:
+----------------------------------------
+1. Code injection via eval (Critical)
+   File: hospitalportal-master/HospitalPortal/Content/js/jquery.validate.unobtrusive.min.js:5
+   STRIDE: Tampering | CWE: CWE-95
+   Description: Code injection via eval detected in JavaScript code
+
+2. Code injection via eval (Critical)
+   File: hospitalportal-master/HospitalPortal/Content/js/jquery.validate.unobtrusive.min.js:5
+   STRIDE: Tampering | CWE: CWE-95
+   Description: Code injection via eval detected in JavaScript code
+
+3. Code injection via exec (Critical)
+   File: hospitalportal-master/HospitalPortal/Content/js/jquery.validate.unobtrusive.min.js:5
+   STRIDE: Tampering | CWE: CWE-95
+   Description: Code injection via exec detected in JavaScript code
+
+4. Code injection via eval (Critical)
+   File: hospitalportal-master/HospitalPortal/Content/js/EditTable.js:494
+   STRIDE: Tampering | CWE: CWE-95
+   Description: Code injection via eval detected in JavaScript code
+
+5. Code injection via exec (Critical)
+   File: hospitalportal-master/HospitalPortal/Content/img/browsers/index_files/jquery.flot.js:32
+   STRIDE: Tampering | CWE: CWE-95
+   Description: Code injection via exec detected in JavaScript code
+
+6. Code injection via exec (Critical)
+   File: hospitalportal-master/HospitalPortal/Content/img/browsers/index_files/jquery.flot.js:32
+   STRIDE: Tampering | CWE: CWE-95
+   Description: Code injection via exec detected in JavaScript code
+
+7. Code injection via exec (Critical)
+   File: hospitalportal-master/HospitalPortal/Content/img/browsers/index_files/jquery.flot.js:32
+   STRIDE: Tampering | CWE: CWE-95
+   Description: Code injection via exec detected in JavaScript code
+
+8. Code injection via exec (Critical)
+   File: hospitalportal-master/HospitalPortal/Content/img/browsers/index_files/jquery.flot.js:32
+   STRIDE: Tampering | CWE: CWE-95
+   Description: Code injection via exec detected in JavaScript code
+
+9. Code injection via exec (Critical)
+   File: hospitalportal-master/HospitalPortal/Content/img/browsers/index_files/jquery.flot.js:32
+   STRIDE: Tampering | CWE: CWE-95
+   Description: Code injection via exec detected in JavaScript code
+
+10. Code injection via exec (Critical)
+   File: hospitalportal-master/HospitalPortal/Content/img/browsers/index_files/jquery.flot.js:32
+   STRIDE: Tampering | CWE: CWE-95
+   Description: Code injection via exec detected in JavaScript code
