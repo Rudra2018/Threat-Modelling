@@ -11,6 +11,7 @@ A comprehensive, production-ready threat modeling tool implementing pure **STRID
 - ✅ **macOS Intel Optimized**: Native compatibility with efficient resource usage
 - ✅ **Context-Aware Analysis**: Enhanced code understanding and vulnerability detection
 - ✅ **Multiple Analysis Modes**: Pattern-based, AI-assisted, and ensemble options
+- ✅ **Visual Diagram Generation**: Automated creation of User Interaction, Data Flow, and Threat Model diagrams
 
 ## 🚀 **Key Features**
 
@@ -21,6 +22,7 @@ A comprehensive, production-ready threat modeling tool implementing pure **STRID
 - **Framework Integration**: OWASP, MITRE ATT&CK, NIST cybersecurity framework mappings
 - **Attack Chain Modeling**: Advanced attack sequence and kill chain analysis
 - **Vulnerability Assessment**: CWE mapping, CVSS scoring, and business impact analysis
+- **Visual Diagram Generation**: Automated creation of high-resolution threat modeling diagrams
 
 ## 📋 **Prerequisites**
 
@@ -32,6 +34,7 @@ A comprehensive, production-ready threat modeling tool implementing pure **STRID
 - **Claude API**: For advanced AI-assisted threat validation
 - **Google Cloud Platform**: For Gemini Pro API access (legacy support)
 - **Ollama**: For local AI models (privacy-focused analysis)
+- **Node.js & npm**: For Mermaid CLI diagram generation
 - **Graphviz**: For advanced diagram generation
 
 ## 🛠️ **Quick Start Installation**
@@ -87,6 +90,18 @@ python3 create_consolidated_pdf.py
 python3 create_individual_pdfs.py
 ```
 
+### **🎨 Generate Visual Diagrams**
+```bash
+# Generate diagrams for specific project (requires Node.js and npm)
+npm install -g @mermaid-js/mermaid-cli
+
+# Diagrams are automatically generated during enhanced analysis
+python3 enhanced_threat_modelling.py --project-path /path/to/project --claude-api-key YOUR_KEY
+
+# Or use standalone diagram generator
+python3 diagram_generator.py
+```
+
 ## 📈 **Real Analysis Results**
 
 Recent analysis of 6 healthcare and hospital management projects:
@@ -101,7 +116,8 @@ Recent analysis of 6 healthcare and hospital management projects:
 | Tool | Purpose | AI Required | Output |
 |------|---------|-------------|---------|
 | `threat_analyzer.py` | **Fast STRIDE analysis** | ❌ No | HTML, JSON, TXT reports |
-| `enhanced_threat_modelling.py` | **AI-assisted validation** | ✅ Claude API | Enhanced reports with POCs |
+| `enhanced_threat_modelling.py` | **AI-assisted validation** | ✅ Claude API | Enhanced reports with POCs + Diagrams |
+| `diagram_generator.py` | **Visual diagram creation** | ❌ No | High-resolution PNG diagrams |
 | `create_consolidated_pdf.py` | **Single combined report** | ❌ No | 11-page consolidated PDF |
 | `create_individual_pdfs.py` | **Per-project reports** | ❌ No | Detailed project PDFs |
 | `threat_modelling.py` | **Legacy PASTA/STRIDE** | ✅ Ollama + Gemini | Original methodology |
@@ -122,6 +138,20 @@ Recent analysis of 6 healthcare and hospital management projects:
 - **STRIDE Distribution Charts**: Threat categorization visualization
 - **Severity Heat Maps**: Risk level distributions
 - **Attack Chain Diagrams**: Sequential threat progression
+
+### **🎨 Interactive Diagrams** (New!)
+- **User Interaction Diagrams**: User-system interaction flows with role-based access
+- **Data Flow Diagrams (DFDs)**: Data movement and processing visualization
+- **Threat Model Diagrams**: STRIDE-based security threat visualization with color-coded severity
+- **High-Resolution Output**: Professional PNG files (1920x1080) with emoji icons and clear typography
+
+#### **Diagram Types by Project**
+| Project Type | User Interaction | Data Flow | Threat Model |
+|--------------|------------------|-----------|--------------|
+| **Mobile Apps** | Patient/Doctor flows | Mobile API architecture | Command injection, logging issues |
+| **Web Applications** | Multi-role dashboards | Microservices data flow | Code injection, HTTP vulnerabilities |
+| **Hospital Systems** | Staff/admin workflows | Enterprise data management | Critical JS vulnerabilities |
+| **Client Applications** | User journey mapping | Service integration flows | Authentication and disclosure threats |
 
 ## 🔧 **Configuration Options**
 
@@ -264,6 +294,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - ✅ **Claude API integration** for expert-level validation
 - ✅ **Reduced false positives** through confidence scoring
 - ✅ **Professional PDF reports** with POCs and remediation steps
+- ✅ **Visual diagram generation** with high-resolution PNG outputs
 - ✅ **macOS Intel optimization** with native compatibility
 - ✅ **Context-aware analysis** and code connection mapping
 - ✅ **106 verified threats** discovered in production testing

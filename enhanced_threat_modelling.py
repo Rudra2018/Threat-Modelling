@@ -48,6 +48,7 @@ if dependencies_installed:
     import textwrap
     import graphviz
     import asyncio
+    from diagram_generator import DiagramGenerator
     import requests
     import time
     import argparse
@@ -1418,6 +1419,65 @@ if dependencies_installed:
 
         return threat_model
 
+    def _extract_user_types(threat_model) -> List[str]:
+        """Extract user types from threat model based on project characteristics"""
+        project_name = threat_model.project_name.lower()
+
+        if 'hospital' in project_name:
+            return ["hospital_admin", "medical_staff", "billing", "it_admin"]
+        elif 'android' in project_name or 'ios' in project_name:
+            return ["patient", "doctor"]
+        elif 'batavia' in project_name or 'client' in project_name:
+            return ["patient", "doctor", "admin", "insurance"]
+        else:
+            return ["user", "admin"]
+
+    def _extract_modules(threat_model) -> List[str]:
+        """Extract modules from threat model architecture components"""
+        modules = []
+
+        # Extract from architecture components
+        for component in threat_model.architecture_components:
+            if isinstance(component, str):
+                modules.append(component)
+
+        # Add common modules based on project type
+        project_name = threat_model.project_name.lower()
+        if 'hospital' in project_name:
+            modules.extend(["Patient Management", "Billing System", "Inventory Management"])
+        elif 'android' in project_name or 'ios' in project_name:
+            modules.extend(["Health Consultation", "Pharmacy Services", "Lab Tests"])
+        elif 'batavia' in project_name:
+            modules.extend(["CMS", "Labs", "Hospital", "Pharmacy", "Finance", "Insurance"])
+
+        return list(set(modules))[:8]  # Limit to 8 for clarity
+
+    def _extract_components(threat_model) -> Dict[str, List[str]]:
+        """Extract components for data flow diagram"""
+        project_name = threat_model.project_name.lower()
+
+        if 'android' in project_name or 'ios' in project_name:
+            return {
+                "frontend": ["Mobile App"],
+                "services": ["Auth Service", "Health Service", "Pharmacy Service", "Lab Service"],
+                "databases": ["User DB", "Health DB", "Pharmacy DB", "Lab DB"],
+                "external": ["Payment Gateway", "Maps Service", "Push Notifications"]
+            }
+        elif 'hospital' in project_name:
+            return {
+                "frontend": ["Web Portal"],
+                "services": ["Patient Service", "Billing Service", "Inventory Service"],
+                "databases": ["Patient DB", "Financial DB", "Inventory DB"],
+                "external": ["EMR Systems", "Payment Gateway", "Insurance APIs"]
+            }
+        else:  # batavia or web client
+            return {
+                "frontend": ["Web Application"],
+                "services": ["CMS Service", "Labs Service", "Hospital Service", "Pharmacy Service"],
+                "databases": ["User DB", "CMS DB", "Labs DB", "Hospital DB"],
+                "external": ["Third-party APIs", "Lab Partners", "Hospital Partners"]
+            }
+
     async def main():
         """Main function."""
         parser = argparse.ArgumentParser(description="Enhanced AI-Assisted Threat Modeling Tool")
@@ -1466,6 +1526,33 @@ if dependencies_installed:
                             console.log(f"    - {p}")
                     else:
                         console.log(f"  {report_type}: {path}")
+
+                # Generate diagrams
+                try:
+                    console.log(f"\n[bold cyan]🎨 Generating diagrams for {project.name}...[/bold cyan]")
+                    diagram_generator = DiagramGenerator(output_dir=str(project_output_dir / "diagrams"))
+
+                    # Prepare project data for diagram generation
+                    project_data = {
+                        'name': project.name.replace('-', '_').replace(' ', '_'),
+                        'users': _extract_user_types(threat_model),
+                        'modules': _extract_modules(threat_model),
+                        'components': _extract_components(threat_model),
+                        'threats': threat_model.stride_threats
+                    }
+
+                    diagram_paths = diagram_generator.generate_all_diagrams(project_data)
+                    diagram_generator.cleanup()
+
+                    if diagram_paths:
+                        console.log(f"[bold green]✅ Generated {len(diagram_paths)} diagrams:[/bold green]")
+                        for diagram_type, path in diagram_paths.items():
+                            console.log(f"  {diagram_type}: {path}")
+                    else:
+                        console.log(f"[yellow]⚠️ No diagrams generated for {project.name}[/yellow]")
+
+                except Exception as e:
+                    console.log(f"[yellow]⚠️ Could not generate diagrams for {project.name}: {e}[/yellow]")
 
             console.log(f"\n[bold green]✅ All analyses complete! Reports saved to {output_dir}[/bold green]")
 

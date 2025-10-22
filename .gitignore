@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+
+# Generated threat modeling outputs
+threat_reports/*/diagrams/
+diagram_images/
+*.mmd
+mermaid_config.json
+
+# Databases
+*.db
+simplified_threat_analysis.db
+
+# API Keys and sensitive config
+*.key
+.env
+.env.local
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.log
+
+# Generated PDFs and images (keep examples but exclude user-generated)
+*_Detailed_Threat_Report.pdf
+*_threat_analysis.*
+*_threat_summary.txt
+
+# Node modules (for mermaid CLI)
+node_modules/
+
+# Generated diagram files (exclude from repo)
+User_Interaction_Diagrams.md
+Data_Flow_Diagrams.md
+Threat_Modeling_Diagrams.md
+DIAGRAM_INDEX.md
